@@ -168,12 +168,17 @@ fetch('data.csv?v=' + new Date().getTime())
     // Initialize table
     const table = new simpleDatatables.DataTable("#myTable", {
       searchable: true,
-      perPage: rows.length   // show ALL rows
+      paging: false,          // removes "entries per page"
+      layout: {
+        top: "{search}",      // keep only search
+        bottom: ""            // remove footer
+      }
     });
 
-    // Move search box outside scroll area
-    document.getElementById("search-container")
-      .appendChild(document.querySelector(".dataTable-input"));
+    // Move search outside scroll area
+    const search = document.querySelector(".dataTable-top");
+    document.getElementById("search-container").appendChild(search);
+
   });
 </script>
 
